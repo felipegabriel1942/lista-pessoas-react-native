@@ -3,11 +3,15 @@ import { View, Text, StyleSheet } from 'react-native';
 
 // A forma abaixo realiza o destruct do componente e ja passar
 // para as variaveis abaixo os dados recebidos no PROPS
-const Line = ({ label, content }) => {
+const Line = ({ label = '', content = '-'}) => {
     return (
         <View style={styles.line}>
-            <Text style={[styles.cell, styles.label]}>{ label }</Text>
-            <Text style={[styles.cell]}>{ content }</Text>
+            <Text style={[
+                styles.cell,
+                styles.label,
+                label.length > 8 ? styles.longLabel : null
+            ]}>{ label }</Text>
+            <Text style={[styles.cell, styles.content]}>{ content }</Text>
         </View>
     );
 }
@@ -25,10 +29,14 @@ const styles = StyleSheet.create({
         paddingLeft: 5
     },
     label: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        flex: 1
     },
     content: {
-
+        flex: 3
+    },
+    longLabel: {
+        fontSize: 12
     }
 });
 

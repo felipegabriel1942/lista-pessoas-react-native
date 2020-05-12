@@ -1,14 +1,13 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import Line from '../components/Line';
 
 export default class PeopleDetailPage extends React.Component {
     render(){
-
         const { people } = this.props.navigation.state.params;
 
         return(
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <Image 
                     source={{ uri: people.picture.large }}
                     style={styles.avatar} />
@@ -18,16 +17,17 @@ export default class PeopleDetailPage extends React.Component {
                     <Line label='Estado:' content={ people.location.state }/>
                     <Line label='Tel:' content={ people.phone }/>
                     <Line label='Cel:' content={ people.cell } />
-                    <Line label='Nat:' content={ people.nat } />
+                    <Line label='Nacionalidade:' content={ people.nat } />
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15
+        paddingLeft: 15,
+        paddingRight: 15
     },  
     avatar: {
         aspectRatio: 1
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     detailContainer: {
         backgroundColor: '#e2f9ff',
         marginTop: 20,
-        elevation: 1 
+        elevation: 1,
+        marginBottom: 15 
     }
 })
